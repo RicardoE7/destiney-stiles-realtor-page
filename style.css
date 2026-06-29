@@ -758,9 +758,18 @@ ul[role="list"] {
   max-width: var(--hero-visual-max);
   aspect-ratio: 4 / 5;
   margin-left: auto;
+  overflow: hidden;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background-color: rgba(255, 255, 255, 0.03);
+}
+
+.hero__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
 }
 
 /* ==========================================================================
@@ -951,12 +960,47 @@ ul[role="list"] {
   max-width: var(--about-visual-max);
   aspect-ratio: 4 / 5;
   margin: 0 auto;
+  overflow: hidden;
   border-radius: 12px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   background-color: var(--color-surface);
-  background-size: cover;
-  background-position: center;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
+}
+
+/* Crossfade slideshow — about section portraits */
+.about__visual--slideshow {
+  position: relative;
+}
+
+.about__visual--slideshow .about__image {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 2s var(--ease-out);
+}
+
+.about__visual--slideshow .about__image.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.about__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about__visual--slideshow .about__image:not(:first-child) {
+    display: none;
+  }
+
+  .about__visual--slideshow .about__image:first-child {
+    position: relative;
+    opacity: 1;
+  }
 }
 
 /* ==========================================================================
@@ -1040,18 +1084,18 @@ ul[role="list"] {
 .listing-card__media {
   flex-shrink: 0;
   aspect-ratio: 16 / 10;
+  overflow: hidden;
 }
 
-/* MLS-ready: add <img class="listing-card__image" alt="..."> inside .listing-card__media */
 .listing-card__image {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
   transition: transform var(--transition-base) var(--ease-out);
 }
 
-.listing-card:hover .listing-card__media.media-placeholder::before,
 .listing-card:hover .listing-card__image {
   transform: scale(1.04);
 }

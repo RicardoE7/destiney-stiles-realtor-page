@@ -260,10 +260,33 @@
   });
 
   /* --------------------------------------------------------------------------
+     About Slideshow — slow crossfade between client photos
+     -------------------------------------------------------------------------- */
+
+  const SLIDE_INTERVAL = 7000;
+
+  function initAboutSlideshow() {
+    const slideshow = document.querySelector('.about__visual--slideshow');
+    if (!slideshow) return;
+
+    const slides = slideshow.querySelectorAll('.about__image');
+    if (slides.length < 2 || prefersReducedMotion) return;
+
+    let currentIndex = 0;
+
+    setInterval(function () {
+      slides[currentIndex].classList.remove('is-active');
+      currentIndex = (currentIndex + 1) % slides.length;
+      slides[currentIndex].classList.add('is-active');
+    }, SLIDE_INTERVAL);
+  }
+
+  /* --------------------------------------------------------------------------
      Initialize enhancements
      -------------------------------------------------------------------------- */
 
   initActiveNav();
   initScrollReveal();
+  initAboutSlideshow();
 
 })();
