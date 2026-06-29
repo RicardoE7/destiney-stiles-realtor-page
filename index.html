@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Destiney Stiles — luxury real estate advisor helping clients buy and sell exceptional properties.">
+  <title>Destiney Stiles | Luxury Real Estate</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Primary site navigation -->
+  <header class="site-header" id="site-header">
+    <nav class="site-nav" aria-label="Primary navigation">
+      <div class="nav-container">
+
+        <a href="#home" class="nav-logo" aria-label="Destiney Stiles — Home">
+          Destiney
+        </a>
+
+        <!-- Desktop navigation links -->
+        <ul class="nav-links" role="list">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#listings" class="nav-link">Listings</a></li>
+          <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="#contact" class="nav-cta">Schedule a Consultation</a>
+
+          <button
+            type="button"
+            class="nav-toggle"
+            id="nav-toggle"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label="Open navigation menu"
+          >
+            <span class="nav-toggle__bar" aria-hidden="true"></span>
+            <span class="nav-toggle__bar" aria-hidden="true"></span>
+            <span class="nav-toggle__bar" aria-hidden="true"></span>
+          </button>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile menu overlay and panel -->
+  <div
+    class="mobile-menu-overlay"
+    id="mobile-menu-overlay"
+    aria-hidden="true"
+    tabindex="-1"
+  ></div>
+
+  <aside
+    class="mobile-menu"
+    id="mobile-menu"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Mobile navigation"
+    aria-hidden="true"
+  >
+    <div class="mobile-menu__header">
+      <span class="mobile-menu__brand">Destiney</span>
+      <button
+        type="button"
+        class="mobile-menu__close"
+        id="mobile-menu-close"
+        aria-label="Close navigation menu"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <nav aria-label="Mobile navigation links">
+      <ul class="mobile-menu__links" role="list">
+        <li><a href="#home" class="mobile-menu__link">Home</a></li>
+        <li><a href="#about" class="mobile-menu__link">About</a></li>
+        <li><a href="#listings" class="mobile-menu__link">Listings</a></li>
+        <li><a href="#testimonials" class="mobile-menu__link">Testimonials</a></li>
+        <li><a href="#contact" class="mobile-menu__link">Contact</a></li>
+      </ul>
+    </nav>
+
+    <a href="#contact" class="mobile-menu__cta">Schedule a Consultation</a>
+  </aside>
+
+  <!-- Hero section — provides backdrop for transparent navigation -->
+  <main>
+    <section class="hero" id="home" aria-labelledby="hero-heading">
+      <div class="hero__background" aria-hidden="true">
+        <div class="hero__media"></div>
+      </div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+
+      <div class="hero__inner">
+        <div class="hero__content">
+          <p class="hero__eyebrow">Luxury Real Estate Advisor</p>
+          <h1 class="hero__title" id="hero-heading">Find your next home with confidence.</h1>
+          <p class="hero__subtitle">
+            Destiney Stiles helps buyers and sellers navigate the real estate journey
+            with clarity, care, and a refined client-first experience.
+          </p>
+          <div class="hero__actions">
+            <a href="#listings" class="hero__cta hero__cta--primary">View Listings</a>
+            <a href="#contact" class="hero__cta hero__cta--secondary">Contact Destiney</a>
+          </div>
+        </div>
+
+        <!-- Reserved for future professional portrait or luxury home photography -->
+        <div class="hero__visual" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- Placeholder sections for anchor navigation -->
+    <section class="page-section" id="about" aria-labelledby="about-heading">
+      <h2 id="about-heading">About</h2>
+    </section>
+    <section class="page-section" id="listings" aria-labelledby="listings-heading">
+      <h2 id="listings-heading">Listings</h2>
+    </section>
+    <section class="page-section" id="buying" aria-labelledby="buying-heading">
+      <h2 id="buying-heading">Buying</h2>
+    </section>
+    <section class="page-section" id="selling" aria-labelledby="selling-heading">
+      <h2 id="selling-heading">Selling</h2>
+    </section>
+    <section class="page-section" id="testimonials" aria-labelledby="testimonials-heading">
+      <h2 id="testimonials-heading">Testimonials</h2>
+    </section>
+    <section class="page-section" id="contact" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact</h2>
+    </section>
+    <section class="page-section" id="consultation" aria-labelledby="consultation-heading">
+      <h2 id="consultation-heading">Schedule a Consultation</h2>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
