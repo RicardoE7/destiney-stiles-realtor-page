@@ -435,12 +435,112 @@
       </div>
     </section>
 
-    <!-- Placeholder sections for anchor navigation -->
-    <section class="page-section" id="contact" aria-labelledby="contact-heading">
-      <h2 id="contact-heading">Contact</h2>
-    </section>
-    <section class="page-section" id="consultation" aria-labelledby="consultation-heading">
-      <h2 id="consultation-heading">Schedule a Consultation</h2>
+    <section class="contact" id="contact" aria-labelledby="contact-heading">
+      <div class="contact__inner">
+
+        <header class="contact__header">
+          <p class="contact__eyebrow">Get In Touch</p>
+          <h2 class="contact__heading" id="contact-heading">Ready to make your next move?</h2>
+          <p class="contact__intro">
+            Whether you're buying, selling, or simply exploring your options, Destiney is here
+            to answer your questions and help you move forward with confidence.
+          </p>
+        </header>
+
+        <div class="contact__layout">
+
+          <div class="contact__info">
+            <h3 class="contact__info-heading">Contact Destiney</h3>
+
+            <ul class="contact__details" role="list">
+              <li class="contact__detail">
+                <span class="contact__detail-label">Phone</span>
+                <a href="tel:+13365550184" class="contact__detail-value">(336) 555-0184</a>
+              </li>
+              <li class="contact__detail">
+                <span class="contact__detail-label">Email</span>
+                <a href="mailto:hello@destineystiles.com" class="contact__detail-value">hello@destineystiles.com</a>
+              </li>
+              <li class="contact__detail">
+                <span class="contact__detail-label">Location</span>
+                <span class="contact__detail-value">Serving Winston-Salem, Greensboro, High Point, and surrounding areas</span>
+              </li>
+            </ul>
+
+            <p class="contact__reassurance">
+              Send a message and Destiney will follow up as soon as possible.
+            </p>
+          </div>
+
+          <div class="contact__form-wrap">
+            <form class="contact-form" action="#" method="post">
+              <div class="contact-form__field">
+                <label class="contact-form__label" for="contact-name">Full Name</label>
+                <input
+                  class="contact-form__input"
+                  type="text"
+                  id="contact-name"
+                  name="name"
+                  placeholder="Your full name"
+                  autocomplete="name"
+                  required
+                >
+              </div>
+
+              <div class="contact-form__field">
+                <label class="contact-form__label" for="contact-email">Email Address</label>
+                <input
+                  class="contact-form__input"
+                  type="email"
+                  id="contact-email"
+                  name="email"
+                  placeholder="you@example.com"
+                  autocomplete="email"
+                  required
+                >
+              </div>
+
+              <div class="contact-form__field">
+                <label class="contact-form__label" for="contact-phone">Phone Number</label>
+                <input
+                  class="contact-form__input"
+                  type="tel"
+                  id="contact-phone"
+                  name="phone"
+                  placeholder="(336) 555-0000"
+                  autocomplete="tel"
+                >
+              </div>
+
+              <div class="contact-form__field">
+                <label class="contact-form__label" for="contact-interest">I'm interested in</label>
+                <select class="contact-form__select" id="contact-interest" name="interest" required>
+                  <option value="" disabled selected>Select an option</option>
+                  <option value="buying">Buying</option>
+                  <option value="selling">Selling</option>
+                  <option value="both">Both</option>
+                  <option value="not-sure">Not Sure Yet</option>
+                </select>
+              </div>
+
+              <div class="contact-form__field">
+                <label class="contact-form__label" for="contact-message">Message</label>
+                <textarea
+                  class="contact-form__textarea"
+                  id="contact-message"
+                  name="message"
+                  rows="5"
+                  placeholder="Tell Destiney about your goals, timeline, or any questions you have."
+                  required
+                ></textarea>
+              </div>
+
+              <button type="submit" class="contact-form__submit">Send Message</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
     </section>
   </main>
 
