@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Destiney Stiles — luxury real estate advisor helping clients buy and sell exceptional properties.">
-  <title>Destiney Stiles | Luxury Real Estate</title>
+  <meta name="description" content="Destiney Stiles is a luxury real estate advisor serving Winston-Salem, Greensboro, High Point, and the Triad. Personalized guidance for buyers and sellers.">
+  <meta name="theme-color" content="#2c2c2c">
+  <title>Destiney Stiles | Luxury Real Estate Advisor in the Triad</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- Primary site navigation -->
   <header class="site-header" id="site-header">
@@ -92,7 +95,7 @@
   </aside>
 
   <!-- Hero section — provides backdrop for transparent navigation -->
-  <main>
+  <main id="main-content">
     <section class="hero" id="home" aria-labelledby="hero-heading">
       <div class="hero__background" aria-hidden="true">
         <div class="hero__media"></div>
@@ -114,12 +117,12 @@
         </div>
 
         <!-- Reserved for future professional portrait or luxury home photography -->
-        <div class="hero__visual" aria-hidden="true"></div>
+        <div class="hero__visual media-placeholder media-placeholder--dark" aria-hidden="true"></div>
       </div>
     </section>
 
     <section class="about" id="about" aria-labelledby="about-heading">
-      <div class="about__inner">
+      <div class="about__inner reveal">
         <div class="about__content">
           <p class="about__eyebrow">Meet Destiney</p>
           <h2 class="about__heading" id="about-heading">Guidance that feels personal from start to finish.</h2>
@@ -159,12 +162,12 @@
         </div>
 
         <!-- Reserved for future professional portrait photography -->
-        <div class="about__visual" aria-hidden="true"></div>
+        <div class="about__visual media-placeholder" aria-hidden="true"></div>
       </div>
     </section>
 
     <section class="listings" id="listings" aria-labelledby="listings-heading">
-      <div class="listings__inner">
+      <div class="listings__inner reveal">
 
         <header class="listings__header">
           <p class="listings__eyebrow">Featured Listings</p>
@@ -178,7 +181,7 @@
         <ul class="listings__grid" role="list">
           <li class="listings__item">
             <article class="listing-card">
-              <div class="listing-card__media" aria-hidden="true"></div>
+              <div class="listing-card__media media-placeholder media-placeholder--listing" aria-hidden="true"></div>
               <div class="listing-card__body">
                 <p class="listing-card__price">$685,000</p>
                 <address class="listing-card__address">
@@ -201,7 +204,7 @@
 
           <li class="listings__item">
             <article class="listing-card">
-              <div class="listing-card__media" aria-hidden="true"></div>
+              <div class="listing-card__media media-placeholder media-placeholder--listing" aria-hidden="true"></div>
               <div class="listing-card__body">
                 <p class="listing-card__price">$529,900</p>
                 <address class="listing-card__address">
@@ -224,7 +227,7 @@
 
           <li class="listings__item">
             <article class="listing-card">
-              <div class="listing-card__media" aria-hidden="true"></div>
+              <div class="listing-card__media media-placeholder media-placeholder--listing" aria-hidden="true"></div>
               <div class="listing-card__body">
                 <p class="listing-card__price">$899,000</p>
                 <address class="listing-card__address">
@@ -255,7 +258,7 @@
     </section>
 
     <section class="services" id="services" aria-labelledby="services-heading">
-      <div class="services__inner">
+      <div class="services__inner reveal">
 
         <header class="services__header">
           <p class="services__eyebrow">Buying &amp; Selling</p>
@@ -362,7 +365,7 @@
     </section>
 
     <section class="testimonials" id="testimonials" aria-labelledby="testimonials-heading">
-      <div class="testimonials__inner">
+      <div class="testimonials__inner reveal">
 
         <header class="testimonials__header">
           <p class="testimonials__eyebrow">Client Stories</p>
@@ -436,7 +439,7 @@
     </section>
 
     <section class="contact" id="contact" aria-labelledby="contact-heading">
-      <div class="contact__inner">
+      <div class="contact__inner reveal">
 
         <header class="contact__header">
           <p class="contact__eyebrow">Get In Touch</p>

@@ -1,6 +1,6 @@
 /**
- * Destiney Stiles — Site Navigation
- * Handles scroll-based nav styling and mobile menu interactions.
+ * Destiney Stiles — Site Scripts
+ * Navigation scroll state, mobile menu, active nav links, and scroll reveal.
  */
 
 (function () {
@@ -11,6 +11,10 @@
      -------------------------------------------------------------------------- */
 
   const SCROLL_THRESHOLD = 75;
+  const DESKTOP_BREAKPOINT = 960;
+  const NAV_SECTION_IDS = ['home', 'about', 'listings', 'testimonials', 'contact'];
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* --------------------------------------------------------------------------
      DOM References
@@ -21,9 +25,9 @@
   const mobileMenu = document.getElementById('mobile-menu');
   const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
   const mobileMenuClose = document.getElementById('mobile-menu-close');
-
-  /** All links that should close the mobile menu on click */
   const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+  const navLinks = document.querySelectorAll('.nav-link[href^="#"], .mobile-menu__link[href^="#"]');
+  const revealElements = document.querySelectorAll('.reveal');
 
   /* --------------------------------------------------------------------------
      Scroll State — transparent → solid navigation
@@ -31,18 +35,20 @@
 
   let ticking = false;
 
-  /**
-   * Updates the scrolled class on the header based on scroll position.
-   */
   function updateScrollState() {
     const isScrolled = window.scrollY > SCROLL_THRESHOLD;
     siteHeader.classList.toggle('is-scrolled', isScrolled);
+
+    const nearBottom =
+      window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100;
+
+    if (nearBottom) {
+      setActiveNav('contact');
+    }
+
     ticking = false;
   }
 
-  /**
-   * Throttled scroll handler using requestAnimationFrame.
-   */
   function onScroll() {
     if (!ticking) {
       requestAnimationFrame(updateScrollState);
@@ -57,9 +63,6 @@
   let isMenuOpen = false;
   let previouslyFocusedElement = null;
 
-  /**
-   * Opens the mobile navigation menu.
-   */
   function openMenu() {
     if (isMenuOpen) return;
 
@@ -76,13 +79,9 @@
     mobileMenu.setAttribute('aria-hidden', 'false');
     mobileMenuOverlay.setAttribute('aria-hidden', 'false');
 
-    /* Focus first interactive element inside the menu */
     mobileMenuClose.focus();
   }
 
-  /**
-   * Closes the mobile navigation menu.
-   */
   function closeMenu() {
     if (!isMenuOpen) return;
 
@@ -98,7 +97,6 @@
     mobileMenu.setAttribute('aria-hidden', 'true');
     mobileMenuOverlay.setAttribute('aria-hidden', 'true');
 
-    /* Return focus to the element that opened the menu */
     if (previouslyFocusedElement) {
       previouslyFocusedElement.focus();
       previouslyFocusedElement = null;
@@ -107,9 +105,6 @@
     }
   }
 
-  /**
-   * Toggles the mobile menu open/closed state.
-   */
   function toggleMenu() {
     if (isMenuOpen) {
       closeMenu();
@@ -119,33 +114,127 @@
   }
 
   /* --------------------------------------------------------------------------
+     Active Navigation — highlights current section while scrolling
+     -------------------------------------------------------------------------- */
+
+  const visibleSections = new Map();
+  let activeSectionId = 'home';
+
+  function setActiveNav(sectionId) {
+    if (activeSectionId === sectionId) return;
+    activeSectionId = sectionId;
+
+    navLinks.forEach(function (link) {
+      const isActive = link.getAttribute('href') === '#' + sectionId;
+      link.classList.toggle('is-active', isActive);
+
+      if (isActive) {
+        link.setAttribute('aria-current', 'location');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  function initActiveNav() {
+    const sections = NAV_SECTION_IDS
+      .map(function (id) { return document.getElementById(id); })
+      .filter(Boolean);
+
+    if (sections.length === 0) return;
+
+    setActiveNav('home');
+
+    const navObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            visibleSections.set(entry.target.id, entry.intersectionRatio);
+          } else {
+            visibleSections.delete(entry.target.id);
+          }
+        });
+
+        if (visibleSections.size === 0) return;
+
+        let bestId = activeSectionId;
+        let bestRatio = 0;
+
+        visibleSections.forEach(function (ratio, id) {
+          if (ratio >= bestRatio) {
+            bestRatio = ratio;
+            bestId = id;
+          }
+        });
+
+        setActiveNav(bestId);
+      },
+      {
+        rootMargin: '-20% 0px -35% 0px',
+        threshold: [0, 0.15, 0.3, 0.45, 0.6]
+      }
+    );
+
+    sections.forEach(function (section) {
+      navObserver.observe(section);
+    });
+  }
+
+  /* --------------------------------------------------------------------------
+     Scroll Reveal — subtle fade/slide-in for section content
+     -------------------------------------------------------------------------- */
+
+  function initScrollReveal() {
+    if (revealElements.length === 0) return;
+
+    if (prefersReducedMotion) {
+      revealElements.forEach(function (el) {
+        el.classList.add('is-visible');
+      });
+      return;
+    }
+
+    const revealObserver = new IntersectionObserver(
+      function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -6% 0px'
+      }
+    );
+
+    revealElements.forEach(function (el) {
+      revealObserver.observe(el);
+    });
+  }
+
+  /* --------------------------------------------------------------------------
      Event Listeners
      -------------------------------------------------------------------------- */
 
-  /* Scroll */
   window.addEventListener('scroll', onScroll, { passive: true });
   updateScrollState();
 
-  /* Mobile menu toggle */
   navToggle.addEventListener('click', toggleMenu);
   mobileMenuClose.addEventListener('click', closeMenu);
-
-  /* Close when clicking overlay (outside menu) */
   mobileMenuOverlay.addEventListener('click', closeMenu);
 
-  /* Close when clicking any navigation link */
   mobileMenuLinks.forEach(function (link) {
     link.addEventListener('click', closeMenu);
   });
 
-  /* Close on Escape key */
   document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape' && isMenuOpen) {
       closeMenu();
     }
   });
 
-  /* Trap focus within mobile menu when open */
   mobileMenu.addEventListener('keydown', function (event) {
     if (!isMenuOpen || event.key !== 'Tab') return;
 
@@ -164,16 +253,17 @@
     }
   });
 
-  /* --------------------------------------------------------------------------
-     Resize — close mobile menu if viewport exceeds breakpoint
-     -------------------------------------------------------------------------- */
-
-  const DESKTOP_BREAKPOINT = 960;
-
   window.addEventListener('resize', function () {
     if (window.innerWidth > DESKTOP_BREAKPOINT && isMenuOpen) {
       closeMenu();
     }
   });
+
+  /* --------------------------------------------------------------------------
+     Initialize enhancements
+     -------------------------------------------------------------------------- */
+
+  initActiveNav();
+  initScrollReveal();
 
 })();
