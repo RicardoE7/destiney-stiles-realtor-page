@@ -11,6 +11,11 @@
   --color-accent: #a68b5b;
   --color-accent-hover: #8f7649;
   --color-accent-muted: rgba(166, 139, 91, 0.12);
+  --color-off-white: #f7f6f4;
+  --color-surface: #fafafa;
+
+  /* About section */
+  --about-visual-max: 28rem;
 
   /* Navigation-specific */
   --nav-height: 5rem;
@@ -680,6 +685,150 @@ ul[role="list"] {
   background-position: center;
 }
 
+/* ==========================================================================
+   About
+   ========================================================================== */
+
+.about {
+  background-color: var(--color-off-white);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.about__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: var(--space-xl);
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: clamp(4rem, 8vw, 6.5rem) var(--container-padding);
+}
+
+.about__content {
+  max-width: 36rem;
+}
+
+.about__eyebrow {
+  font-size: var(--font-size-nav);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+}
+
+.about__heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-black);
+  margin-bottom: var(--space-md);
+}
+
+.about__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.about__body p {
+  font-size: clamp(1rem, 1.8vw, 1.0625rem);
+  line-height: 1.75;
+  color: var(--color-charcoal-light);
+}
+
+.about__features {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.about__feature {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-white);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+  transition:
+    border-color var(--transition-base) var(--ease-out),
+    box-shadow var(--transition-base) var(--ease-out);
+}
+
+.about__feature:hover {
+  border-color: rgba(166, 139, 91, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.about__feature-icon {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+}
+
+.about__feature-label {
+  font-size: var(--font-size-nav);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-charcoal);
+}
+
+.about__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.875rem 1.75rem;
+  font-size: var(--font-size-nav);
+  font-weight: 500;
+  letter-spacing: var(--letter-spacing-nav);
+  text-transform: uppercase;
+  color: var(--color-white);
+  background-color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: 100px;
+  transition:
+    background-color var(--transition-base) var(--ease-out),
+    border-color var(--transition-base) var(--ease-out),
+    transform var(--transition-fast) var(--ease-out);
+}
+
+.about__cta:hover {
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+.about__cta:active {
+  transform: scale(0.98);
+}
+
+.about__cta:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Portrait slot — set background-image when photography is ready */
+.about__visual {
+  width: 100%;
+  max-width: var(--about-visual-max);
+  aspect-ratio: 4 / 5;
+  margin: 0 auto;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--color-surface);
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
+}
+
 /* Placeholder page sections */
 .page-section {
   min-height: 60vh;
@@ -748,6 +897,24 @@ ul[role="list"] {
     --nav-link-gap: 3.25rem;
     --hero-content-max: 42rem;
     --hero-visual-max: 30rem;
+    --about-visual-max: 32rem;
+  }
+}
+
+/* About — two-column layout */
+@media (min-width: 900px) {
+  .about__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, var(--about-visual-max));
+    gap: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  .about__features {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .about__visual {
+    margin: 0;
+    justify-self: end;
   }
 }
 
