@@ -1090,6 +1090,209 @@ ul[role="list"] {
   outline-offset: 3px;
 }
 
+/* ==========================================================================
+   Buying & Selling (Services)
+   ========================================================================== */
+
+.services {
+  background-color: var(--color-off-white);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.services__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: clamp(4rem, 8vw, 6.5rem) var(--container-padding);
+}
+
+.services__header {
+  max-width: 42rem;
+  margin-bottom: var(--space-xl);
+}
+
+.services__eyebrow {
+  font-size: var(--font-size-nav);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+}
+
+.services__heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-black);
+  margin-bottom: var(--space-md);
+}
+
+.services__intro {
+  font-size: clamp(1rem, 1.8vw, 1.0625rem);
+  line-height: 1.75;
+  color: var(--color-charcoal-light);
+}
+
+.services__columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+/* Reusable service panel — shared by buying and selling columns */
+.service-panel {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  background-color: var(--color-white);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  transition:
+    border-color var(--transition-base) var(--ease-out),
+    box-shadow var(--transition-base) var(--ease-out),
+    transform var(--transition-base) var(--ease-out);
+}
+
+.service-panel:hover {
+  border-color: rgba(166, 139, 91, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
+  transform: translateY(-2px);
+}
+
+.service-panel__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--color-black);
+  margin-bottom: var(--space-sm);
+}
+
+.service-panel__intro {
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: var(--color-charcoal-light);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Reusable vertical timeline — steps can be added or removed easily */
+.service-timeline {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.service-timeline__item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-sm) var(--space-md);
+  padding-bottom: var(--space-lg);
+}
+
+.service-timeline__item:last-child {
+  padding-bottom: 0;
+}
+
+.service-timeline__marker {
+  position: relative;
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  margin-top: 0.4rem;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--color-accent-muted);
+}
+
+/* Connecting line between timeline steps */
+.service-timeline__item:not(:last-child) .service-timeline__marker::after {
+  content: "";
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: calc(var(--space-lg) + 0.5rem);
+  background-color: rgba(166, 139, 91, 0.25);
+}
+
+.service-timeline__title {
+  font-size: var(--font-size-nav);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-charcoal);
+  margin-bottom: 0.25rem;
+  transition: color var(--transition-base) var(--ease-out);
+}
+
+.service-timeline__item:hover .service-timeline__title {
+  color: var(--color-accent);
+}
+
+.service-timeline__desc {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--color-charcoal-light);
+}
+
+/* Bottom CTA */
+.services__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding-top: var(--space-md);
+  text-align: center;
+}
+
+.services__footer-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 2.5vw, 1.75rem);
+  font-weight: 400;
+  color: var(--color-charcoal);
+}
+
+.services__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.875rem 1.75rem;
+  font-size: var(--font-size-nav);
+  font-weight: 500;
+  letter-spacing: var(--letter-spacing-nav);
+  text-transform: uppercase;
+  color: var(--color-white);
+  background-color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: 100px;
+  transition:
+    background-color var(--transition-base) var(--ease-out),
+    border-color var(--transition-base) var(--ease-out),
+    transform var(--transition-fast) var(--ease-out);
+}
+
+.services__cta:hover {
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+.services__cta:active {
+  transform: scale(0.98);
+}
+
+.services__cta:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
 /* Placeholder page sections */
 .page-section {
   min-height: 60vh;
@@ -1190,6 +1393,14 @@ ul[role="list"] {
 @media (min-width: 1024px) {
   .listings__grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Services — two equal columns */
+@media (min-width: 900px) {
+  .services__columns {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
   }
 }
 
