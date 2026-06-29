@@ -24,6 +24,10 @@
 
   /* Navigation-specific */
   --nav-height: 5rem;
+  /* destiney-nav-logo.png — 160×48, tight crop (no padding) */
+  --nav-logo-ratio: calc(160 / 48);
+  --nav-logo-height: clamp(3rem, 4.2vw, 3.5rem);
+  --nav-logo-max-width: min(calc(var(--nav-logo-height) * var(--nav-logo-ratio)), 12.5rem);
   --nav-scroll-threshold: 75px;
   --nav-bg-transparent: transparent;
   --nav-bg-scrolled: rgba(255, 255, 255, 0.92);
@@ -237,23 +241,24 @@ ul[role="list"] {
 /* Logo */
 .nav-logo {
   justify-self: start;
-  font-family: var(--font-display);
-  font-size: var(--font-size-logo);
-  font-weight: 400;
-  letter-spacing: var(--letter-spacing-logo);
-  text-transform: uppercase;
-  color: var(--nav-text-hero);
-  transition: color var(--transition-base) var(--ease-out),
-              opacity var(--transition-fast) var(--ease-out);
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+  transition: opacity var(--transition-fast) var(--ease-out);
 }
 
-.site-header.is-scrolled .nav-logo,
-.site-header.menu-active .nav-logo {
-  color: var(--color-black);
+.nav-logo__image {
+  display: block;
+  height: var(--nav-logo-height);
+  width: auto;
+  max-width: var(--nav-logo-max-width);
+  max-height: calc(var(--nav-height) - 1rem);
+  aspect-ratio: 160 / 48;
+  object-fit: contain;
 }
 
 .nav-logo:hover {
-  opacity: 0.75;
+  opacity: 0.85;
 }
 
 .nav-logo:focus-visible {
@@ -1995,6 +2000,11 @@ a.contact__detail-value:focus-visible {
 }
 
 @media (max-width: 960px) {
+  :root {
+    --nav-logo-height: clamp(2.75rem, 7vw, 3.25rem);
+    --nav-logo-max-width: min(calc(var(--nav-logo-height) * var(--nav-logo-ratio)), 10.5rem);
+  }
+
   .nav-links {
     display: none;
   }
@@ -2020,6 +2030,8 @@ a.contact__detail-value:focus-visible {
 @media (max-width: 380px) {
   :root {
     --nav-height: 4.25rem;
+    --nav-logo-height: clamp(2.5rem, 7vw, 2.875rem);
+    --nav-logo-max-width: min(calc(var(--nav-logo-height) * var(--nav-logo-ratio)), 9rem);
     --font-size-logo: 1.2rem;
   }
 
