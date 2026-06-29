@@ -1657,6 +1657,159 @@ a.contact__detail-value:focus-visible {
   outline-offset: 3px;
 }
 
+/* ==========================================================================
+   Site Footer
+   ========================================================================== */
+
+.site-footer {
+  background-color: var(--color-charcoal);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.site-footer__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: clamp(3.5rem, 7vw, 5rem) var(--container-padding) var(--space-md);
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.site-footer__col--brand {
+  max-width: 22rem;
+}
+
+.site-footer__logo {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: var(--font-size-logo);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-logo);
+  text-transform: uppercase;
+  color: var(--color-white);
+  margin-bottom: var(--space-sm);
+  transition: opacity var(--transition-fast) var(--ease-out);
+}
+
+.site-footer__logo:hover {
+  opacity: 0.8;
+}
+
+.site-footer__logo:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.site-footer__tagline {
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.site-footer__heading {
+  font-size: var(--font-size-nav);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  margin-bottom: var(--space-sm);
+}
+
+.site-footer__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.site-footer__list--contact {
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.site-footer__link {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+  transition: color var(--transition-base) var(--ease-out);
+}
+
+.site-footer__link:hover {
+  color: var(--color-accent);
+}
+
+.site-footer__link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.site-footer__text {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.site-footer__label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.25rem;
+}
+
+.site-footer__social {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.site-footer__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: rgba(255, 255, 255, 0.65);
+  border-radius: 50%;
+  transition:
+    color var(--transition-base) var(--ease-out),
+    background-color var(--transition-base) var(--ease-out);
+}
+
+.site-footer__social-link:hover {
+  color: var(--color-accent);
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.site-footer__social-link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.site-footer__bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  padding-top: var(--space-lg);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.site-footer__copyright,
+.site-footer__credit {
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.45);
+}
+
 /* Placeholder page sections */
 .page-section {
   min-height: 60vh;
@@ -1794,6 +1947,38 @@ a.contact__detail-value:focus-visible {
   .contact-form__submit {
     align-self: stretch;
     width: 100%;
+  }
+}
+
+/* Footer — tablet: 2 columns */
+@media (min-width: 640px) {
+  .site-footer__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg) clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .site-footer__col--brand {
+    grid-column: 1 / -1;
+    max-width: 28rem;
+  }
+
+  .site-footer__bar {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+/* Footer — desktop: 4 columns */
+@media (min-width: 1024px) {
+  .site-footer__grid {
+    grid-template-columns: 1.35fr 1fr 1fr 1.15fr;
+    gap: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .site-footer__col--brand {
+    grid-column: auto;
+    max-width: none;
   }
 }
 
